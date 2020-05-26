@@ -4,28 +4,31 @@ import com.example.springboot.form.models.Usuario;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
+
 
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 
 @Controller
+@SessionAttributes("usuario")
 public class FormularioController {
 
     @GetMapping("/form")
     public String fomularioDatos(Model model) {
         Usuario usuario=new Usuario();
+        usuario.setNombre("Ivan");
+        usuario.setApellido("Ramos");
+        usuario.setIdentificador("123-456-7-B");
         model.addAttribute("titulo","Registro de formulario");
         model.addAttribute("usuario",usuario);
         return "form";
     }
 // de esta forma tambien se puede hacer mas limpio el codigo
     @PostMapping("/form")
-    public String formularioEnvioDatos(@Valid  Usuario usuario, BindingResult result, Model model){
+    public String formularioEnvioDatos(@Valid  Usuario usuario, BindingResult result, Model model, SessionStatus status){
         model.addAttribute("titulo","Resultado datos formulario");
 
 
@@ -38,6 +41,7 @@ public class FormularioController {
             return "form";
         }
         model.addAttribute("usuario",usuario);
+        status.setComplete();
         return "resultado";
     }
 
