@@ -1,19 +1,23 @@
 package com.example.springboot.form.models;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 public class Usuario {
 
     private String identificador;
-    @NotEmpty
+    @NotEmpty(message = "campo requerido")
     private String nombre;
     @NotEmpty
     private String apellido;
     @NotEmpty
     private String userName;
     @NotEmpty
+    @Size (min=3,max=8)
     private String password;
     @NotEmpty
+    @Email(message = "este campo email es requerido")
     private String email;
 
     public String getNombre() {
