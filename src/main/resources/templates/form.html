@@ -7,6 +7,18 @@
 <body>
 <form th:action="@{/form}" th:object="${usuario}" method="post">
 
+    <div>
+        <label for="identificador">Identificador</label>
+
+        <div>
+            <input type="text"  id="identificador" th:field="*{identificador}">
+        </div>
+        <div th:if="${#fields.hasErrors('identificador')}" th:errors="*{identificador}"></div>
+        <!---    <div th:if="${error!=null&&error.containsKey('userName')}"th:text="${error.get('userName')}"></div>-->
+
+    </div>
+
+
 
     <div>
         <label for="nombre">Nombre</label>
