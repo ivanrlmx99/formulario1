@@ -1,6 +1,8 @@
 package com.example.springboot.form.controllers;
 
 import com.example.springboot.form.models.Usuario;
+import com.example.springboot.form.validacion.UsuarioValidador;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +17,8 @@ import java.util.Map;
 @Controller
 @SessionAttributes("usuario")
 public class FormularioController {
+    @Autowired
+    private UsuarioValidador validacion;
 
     @GetMapping("/form")
     public String fomularioDatos(Model model) {
@@ -29,6 +33,7 @@ public class FormularioController {
 // de esta forma tambien se puede hacer mas limpio el codigo
     @PostMapping("/form")
     public String formularioEnvioDatos(@Valid  Usuario usuario, BindingResult result, Model model, SessionStatus status){
+        validacion.validate(usuario,result);
         model.addAttribute("titulo","Resultado datos formulario");
 
 
