@@ -10,6 +10,7 @@ import org.springframework.validation.Validator;
 @Component
 public class UsuarioValidador implements Validator {
 
+
     @Override
     public boolean supports(Class<?> aClass) {
         return Usuario.class.isAssignableFrom(aClass);
@@ -17,15 +18,14 @@ public class UsuarioValidador implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-        Usuario usuario=(Usuario)target;
+        Usuario usuario = (Usuario) target;
 
-        ValidationUtils.rejectIfEmpty(errors,"nombre","NotEmpty.usuario.nombre");
+        ValidationUtils.rejectIfEmpty(errors, "nombre", "NotEmpty.usuario.nombre");
 
-      //  if(usuario.getIdentificador().matches(Constants.VALIDADORID)==false)
-        if(!usuario.getIdentificador().matches(Constants.VALIDADORID)){
-            errors.rejectValue("identificador","pattern.usuario.identificador");
+        //  if(usuario.getIdentificador().matches(Constants.VALIDADORID)==false)
+        if (!usuario.getIdentificador().matches(Constants.VALIDADORID)) {
+            errors.rejectValue("identificador", "pattern.usuario.identificador");
 
         }
-
     }
 }
