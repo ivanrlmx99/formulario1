@@ -3,14 +3,19 @@ package com.example.springboot.form.controllers;
 import com.example.springboot.form.models.Usuario;
 import com.example.springboot.form.validacion.UsuarioValidador;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
 
 import javax.validation.Valid;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,13 +24,21 @@ import java.util.Map;
 public class FormularioController {
     @Autowired
     private UsuarioValidador validacion;
+    
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+    	binder.addValidators(validacion);
+    	SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
+    	dateFormat.setLenient(false);
+    	binder.registerCustomEditor(Date.class,new CustomDateEditor(dateFormat,false));
+    }
 
     @GetMapping("/form")
     public String fomularioDatos(Model model) {
         Usuario usuario=new Usuario();
         usuario.setNombre("Ivan");
         usuario.setApellido("Ramos");
-        usuario.setIdentificador("123-456-7-B");
+        usuario.setIdentificador("12.456.897-A");
         model.addAttribute("titulo","Registro de formulario");
         model.addAttribute("usuario",usuario);
         return "form";
@@ -33,7 +46,7 @@ public class FormularioController {
 // de esta forma tambien se puede hacer mas limpio el codigo
     @PostMapping("/form")
     public String formularioEnvioDatos(@Valid  Usuario usuario, BindingResult result, Model model, SessionStatus status){
-        validacion.validate(usuario,result);
+     //   validacion.validate(usuario,result);
         model.addAttribute("titulo","Resultado datos formulario");
 
 
