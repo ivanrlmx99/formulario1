@@ -1,20 +1,13 @@
-package com.example.springboot.form.models;
+package com.example.springboot.form.app.models;
 
 import java.util.Date;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.Valid;
+import javax.validation.constraints.*;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
-import com.example.springboot.form.validacion.IdentificadorRegex;
-import com.example.springboot.form.validacion.Requerido;
+import com.example.springboot.form.app.models.domain.Pais;
+import com.example.springboot.form.app.validacion.IdentificadorRegex;
+import com.example.springboot.form.app.validacion.Requerido;
 
 public class Usuario {
 
@@ -40,8 +33,13 @@ public class Usuario {
     @Max(5000)
     private Integer cuenta;
     @NotNull
+    @Future
   // @DateTimeFormat(pattern = "yyy-MM-dd")
     private Date dateFormat;
+    //@NotEmpty es para string no objeto
+   // @Valid
+    @NotNull
+    private Pais pais;
 
     
 
@@ -108,5 +106,11 @@ public class Usuario {
 		this.dateFormat = dateFormat;
 	}
 
-	
+    public Pais getPais() {
+        return pais;
+    }
+
+    public void setPais(Pais pais) {
+        this.pais = pais;
+    }
 }

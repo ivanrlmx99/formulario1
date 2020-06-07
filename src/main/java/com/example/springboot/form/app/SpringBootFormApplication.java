@@ -1,4 +1,4 @@
-package com.example.springboot.form;
+package com.example.springboot.form.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

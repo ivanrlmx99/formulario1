@@ -1,4 +1,4 @@
-package com.example.springboot.form.validacion;
+package com.example.springboot.form.app.validacion;
 
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.METHOD;

@@ -1,8 +1,7 @@
-package com.example.springboot.form.validacion;
+package com.example.springboot.form.app.validacion;
 
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.METHOD;
-import static java.lang.annotation.RetentionPolicy.CLASS;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
