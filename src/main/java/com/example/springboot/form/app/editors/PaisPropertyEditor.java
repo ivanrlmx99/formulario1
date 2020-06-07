@@ -12,7 +12,7 @@ public class PaisPropertyEditor extends PropertyEditorSupport {
 
     @Override
     public void setAsText(String idString) throws IllegalArgumentException {
-        if(idString!=null&&idString.length()>0){
+       /* if(idString!=null&&idString.length()>0){
           try {
               Integer id=Integer.parseInt(idString);
               this.setValue(paisService.obtenerPorId(id));
@@ -23,6 +23,16 @@ public class PaisPropertyEditor extends PropertyEditorSupport {
 
         }else{
             setValue(null);
+        }*/
+
+     {
+            try {
+                Integer id=Integer.parseInt(idString);
+                this.setValue(paisService.obtenerPorId(id));
+            }catch (NumberFormatException ex){
+                setValue(null);
+            }
+
         }
 
 

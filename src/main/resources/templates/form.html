@@ -23,6 +23,19 @@
 			<div th:if="${#fields.hasErrors('pais')}"
 				 th:errors="*{pais}"></div>
 		</div>
+		<div>
+			<label >roles</label>
+
+			<div th:each="role:${listadoRolesString}">
+				<input type="checkbox"  th:field="*{roles}"th:value="${role}">
+				<label th:for="${#ids.prev('roles')}" th:text="${role}"></label>
+			</div>
+			<div th:if="${#fields.hasErrors('roles')}"
+				 th:errors="*{roles}"></div>
+
+
+		</div>
+
 
 		<div>
 			<label for="identificador">Identificador</label>

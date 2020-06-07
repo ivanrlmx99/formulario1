@@ -44,8 +44,6 @@ public class FormularioController {
     public List<Pais> listaPaises(){
         return paisService.listar();
     }
-
-
     /*@ModelAttribute("listaPaises")
     public List<Pais> listaPaises(){
         return Arrays.asList(
@@ -55,7 +53,15 @@ public class FormularioController {
                 new Pais(1,"EN","Inglaterra")
              );
     }*/
+@ModelAttribute("listadoRolesString")
+public List<String>listadoRolesString(){
+    List<String>roles=new ArrayList<>();
+    roles.add("ROLE_ADMIN");
+    roles.add("ROLE_MODERATOR");
+    roles.add("ROLE_USER");
 
+    return roles;
+}
 
     @ModelAttribute("paises")
     public List<String> paises(){

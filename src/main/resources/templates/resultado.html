@@ -22,6 +22,10 @@
     <li th:text="${usuario.pais.codigoPostall}"></li>
     <li th:text="${usuario.pais.nombrePais}"></li>
 </ul>
+<div>Roles</div>
+<ul>
+    <li th:each="role:${usuario.roles}" th:text="${role}"></li>
+</ul>
 
 </body>
 </html>
