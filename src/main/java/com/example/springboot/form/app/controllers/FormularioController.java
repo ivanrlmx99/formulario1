@@ -1,8 +1,11 @@
 package com.example.springboot.form.app.controllers;
 
 import com.example.springboot.form.app.editors.PaisPropertyEditor;
+import com.example.springboot.form.app.editors.RolePropertyEditor;
 import com.example.springboot.form.app.models.domain.Pais;
+import com.example.springboot.form.app.models.domain.Role;
 import com.example.springboot.form.app.services.PaisService;
+import com.example.springboot.form.app.services.RoleService;
 import com.example.springboot.form.app.validacion.UsuarioValidador;
 import com.example.springboot.form.app.models.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +30,13 @@ public class FormularioController {
     private UsuarioValidador validacion;
     @Autowired
    private  PaisService paisService;
+   @Autowired
+   private RoleService roleService;
 
     @Autowired
     private PaisPropertyEditor paisPropertyEditor;
+    @Autowired
+    private RolePropertyEditor rolePropertyEditor;
     
     @InitBinder
     public void initBinder(WebDataBinder binder) {
@@ -39,6 +46,7 @@ public class FormularioController {
     	binder.registerCustomEditor(Date.class,"dateFormat",new CustomDateEditor(dateFormat,false));
     	binder.registerCustomEditor(String.class,"apellido",new NombreMayusculaEditor());
         binder.registerCustomEditor(Pais.class,"pais",paisPropertyEditor);
+        binder.registerCustomEditor(Role.class,"roles",rolePropertyEditor);
     }
     @ModelAttribute("listaPaises")
     public List<Pais> listaPaises(){
@@ -53,6 +61,10 @@ public class FormularioController {
                 new Pais(1,"EN","Inglaterra")
              );
     }*/
+    @ModelAttribute("listadoRoles")
+    public List<Role>listadoRoles(){
+        return this.roleService.listar();
+    }
 @ModelAttribute("listadoRolesString")
 public List<String>listadoRolesString(){
     List<String>roles=new ArrayList<>();
@@ -62,6 +74,16 @@ public List<String>listadoRolesString(){
 
     return roles;
 }
+
+    @ModelAttribute("listadoRolesMap")
+    public Map<String,String> listadoRolesMap(){
+        Map<String,String>roles=new HashMap<String,String>();
+      roles.put("ROLE_ADMIN","Administrador");
+        roles.put("ROLE_MODERATOR","moderador");
+        roles.put("ROLE_USER","Usuario");
+
+        return roles;
+    }
 
     @ModelAttribute("paises")
     public List<String> paises(){

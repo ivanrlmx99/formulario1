@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 import com.example.springboot.form.app.models.domain.Pais;
+import com.example.springboot.form.app.models.domain.Role;
 import com.example.springboot.form.app.validacion.IdentificadorRegex;
 import com.example.springboot.form.app.validacion.Requerido;
 
@@ -42,7 +43,7 @@ public class Usuario {
     @NotNull
     private Pais pais;
     @NotEmpty
-    private List<String> roles;
+    private List<Role> roles;
 
     
 
@@ -117,11 +118,11 @@ public class Usuario {
         this.pais = pais;
     }
 
-    public List<String> getRoles() {
+    public List<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<String> roles) {
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
 }
