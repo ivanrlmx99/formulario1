@@ -48,6 +48,11 @@ public class FormularioController {
         binder.registerCustomEditor(Pais.class,"pais",paisPropertyEditor);
         binder.registerCustomEditor(Role.class,"roles",rolePropertyEditor);
     }
+    @ModelAttribute("genero")
+    public List<String>genero(){
+        return Arrays.asList("Hombre","Mujer");
+    }
+
     @ModelAttribute("listaPaises")
     public List<Pais> listaPaises(){
         return paisService.listar();
@@ -106,9 +111,13 @@ return paises;
     @GetMapping("/form")
     public String fomularioDatos(Model model) {
         Usuario usuario=new Usuario();
+        usuario.setHabilitar(true);
         usuario.setNombre("Ivan");
         usuario.setApellido("Ramos");
         usuario.setIdentificador("12.456.897-A");
+        usuario.setDatoOculto("un dato OcultoZ");
+        usuario.setPais(new Pais(1,"MX","México"));
+        usuario.setRoles(Arrays.asList(new Role(1, "administrador", "ROLE_ADMIN")));
         model.addAttribute("titulo","Registro de formulario");
         model.addAttribute("usuario",usuario);
         return "form";

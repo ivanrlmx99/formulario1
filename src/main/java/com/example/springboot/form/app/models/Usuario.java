@@ -44,6 +44,10 @@ public class Usuario {
     private Pais pais;
     @NotEmpty
     private List<Role> roles;
+    private Boolean habilitar;
+    @NotEmpty
+    private String genero;
+    private String datoOculto;
 
     
 
@@ -124,5 +128,29 @@ public class Usuario {
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+
+    public Boolean getHabilitar() {
+        return habilitar;
+    }
+
+    public void setHabilitar(Boolean habilitar) {
+        this.habilitar = habilitar;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public String getDatoOculto() {
+        return datoOculto;
+    }
+
+    public void setDatoOculto(String datoOculto) {
+        this.datoOculto = datoOculto;
     }
 }

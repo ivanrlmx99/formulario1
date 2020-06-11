@@ -42,4 +42,9 @@ public class Pais {
     public void setNombrePais(String nombrePais) {
         this.nombrePais = nombrePais;
     }
+
+    @Override
+    public String toString() {
+        return this.id.toString();
+    }
 }
