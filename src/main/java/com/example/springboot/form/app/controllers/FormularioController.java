@@ -124,12 +124,13 @@ return paises;
     }
 // de esta forma tambien se puede hacer mas limpio el codigo
     @PostMapping("/form")
-    public String formularioEnvioDatos(@Valid  Usuario usuario, BindingResult result, Model model, SessionStatus status){
+    public String formularioEnvioDatos(@Valid  Usuario usuario, BindingResult result, Model model ){
      //   validacion.validate(usuario,result);
-        model.addAttribute("titulo","Resultado datos formulario");
+
 
 
         if(result.hasErrors()){
+            model.addAttribute("titulo","Resultado datos formulario");
         /*    Map<String,String> errores=new HashMap<>();
             result.getFieldErrors().forEach(err->{
                 errores.put(err.getField(),"el campo--->".concat(err.getField()).concat(err.getDefaultMessage()));
@@ -137,6 +138,16 @@ return paises;
             model.addAttribute("error",errores);*/
             return "form";
         }
+        model.addAttribute("usuario",usuario);
+        return "redirect:/ver";
+    }
+    @GetMapping("/ver")
+    public String ver(@SessionAttribute(name="usuario",required = false)Usuario usuario ,Model model,SessionStatus status){
+        if(usuario==null){
+            return "redirect:/form";
+        }
+
+        model.addAttribute("titulo","Resultado datos formulario");
         model.addAttribute("usuario",usuario);
         status.setComplete();
         return "resultado";

@@ -3,32 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="${titulo}">Vista final formularioss</title>
+    link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 </head>
 <body>
 <h3 th:text="${titulo}"></h3>
 
-
-<ul>
-    <li th:text="${usuario.nombre}"></li>
-    <li th:text="${usuario.apellido}"></li>
-    <li th:text="${usuario.userName}"></li>
-    <li th:text="${usuario.password}"></li>
-    <li th:text="${usuario.email}"></li>
-    <li th:text="${usuario.identificador}"></li>
-    <li th:text="${usuario.cuenta}"></li>
-    <li th:text="${#dates.format(usuario.dateFormat,'dd/MM/yyyy')}"></li>
+<div class="container">
+    <a th:href="@{/form}" class="btn btn-success btn-lg my-3">volver</a>
+<ul class="list-group my-2">
+    <li class="list-group-item active" th:text="${titulo}"></li>
+    <li  class="list-group-item" th:text="${usuario.nombre}"></li>
+    <li class="list-group-item" th:text="${usuario.apellido}"></li>
+    <li class="list-group-item" th:text="${usuario.userName}"></li>
+    <li class="list-group-item" th:text="${usuario.password}"></li>
+    <li class="list-group-item" th:text="${usuario.email}"></li>
+    <li class="list-group-item" th:text="${usuario.identificador}"></li>
+    <li class="list-group-item" th:text="${usuario.cuenta}"></li>
+    <li class="list-group-item" th:text="${#dates.format(usuario.dateFormat,'dd/MM/yyyy')}"></li>
   <!--  <li th:text="${usuario.pais.codigoPostall}"></li>-->
-    <li th:text="${usuario.pais.id}"></li>
-    <li th:text="${usuario.pais.codigoPostall}"></li>
-    <li th:text="${usuario.pais.nombrePais}"></li>
-    <li th:text="'HAbilitar: '+${usuario.habilitar}"></li>
-    <li th:text="'resultado: '+${usuario.genero}"></li>
-    <li th:text="'Dato ocultoX: '+${usuario.datoOculto}"></li>
+    <li class="list-group-item" th:text="${usuario.pais.id}"></li>
+    <li class="list-group-item" th:text="${usuario.pais.codigoPostall}"></li>
+    <li  class="list-group-item" th:text="${usuario.pais.nombrePais}"></li>
+    <li class="list-group-item" th:text="'HAbilitar: '+${usuario.habilitar}"></li>
+    <li class="list-group-item" th:text="'resultado: '+${usuario.genero}"></li>
+    <li class="list-group-item" th:text="'Dato ocultoX: '+${usuario.datoOculto}"></li>
 </ul>
 <div>Roles</div>
 <ul>
     <li th:each="role:${usuario.roles}" th:text="${role.id}+'-->'+${role.nombre}+'--->'+${role.rol}"></li>
 </ul>
-
+</div>
 </body>
 </html>

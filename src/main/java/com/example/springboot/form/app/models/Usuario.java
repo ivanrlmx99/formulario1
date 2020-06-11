@@ -16,7 +16,8 @@ public class Usuario {
    // @Pattern(regexp = "[0-9]{2}[.][\\d]{3}[.][\\d]{3}[-][A-Z]{1}")
 	@IdentificadorRegex
     private String identificador;
-    @NotEmpty(message = "campo requerido")
+    @NotEmpty
+    @Requerido
     private String nombre;
     @NotEmpty
     @Requerido
